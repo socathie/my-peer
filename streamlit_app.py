@@ -13,6 +13,8 @@ os.environ["AZURE_OPENAI_API_KEY"] = st.secrets["AZURE_OPENAI_API_KEY"]
 os.environ["AZURE_OPENAI_ENDPOINT"] = st.secrets["AZURE_OPENAI_ENDPOINT"]
 promptlayer.api_key = st.secrets["PROMPTLAYER_API_KEY"]
 
+st.set_page_config(page_title="My Peer")
+
 if "disabled" not in st.session_state:
     st.session_state["disabled"] = False
 
