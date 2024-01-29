@@ -34,7 +34,7 @@ tag = st.session_state["id"]
 # tag = st.sidebar.text_input("Participant ID", value=st.session_state["id"], disabled=True)
 
 # developer mode toggle
-# developer_mode = st.sidebar.checkbox("Developer Mode", value=False) # TODO: comment out this line in production
+# developer_mode = st.sidebar.checkbox("Developer Mode", value=False)
 
 # if developer_mode:
 #     reading_cpm = st.sidebar.number_input("Reading speed (characters per minute)", value=200)
@@ -46,11 +46,11 @@ tag = st.session_state["id"]
 #         st.session_state.clear()
 #         st.session_state["disabled"] = False
 # else:
-reading_cpm = 200
-typing_cpm = 50
+reading_cpm = 200 # TODO: update this value in production
+typing_cpm = 50 # TODO: update this value in production
 
-first_msg = "告訴我一件最近不開心的事吧！"
-system_msg = "You are a therapist. You want to keep anonymous. Do not mention that you are an AI. Only use Traditional Chinese to respond."
+first_msg = "告訴我一件最近不開心的事吧！" # TODO: update this value in production
+system_msg = "You are a therapist. You want to keep anonymous. Do not mention that you are an AI. Only use Traditional Chinese to respond." # TODO: update this value in production
 
 reading_cps = reading_cpm/60
 typing_cps = typing_cpm/60
@@ -63,7 +63,7 @@ llm = AzureChatOpenAI(
     callbacks=[PromptLayerCallbackHandler(pl_tags=[tag])]
 )
 
-msgs = StreamlitChatMessageHistory()
+msgs = StreamlitChatMessageHistory() # TODO: add examples here?
 
 memory = ConversationBufferMemory(memory_key="history", chat_memory=msgs, return_messages=True)
 if len(msgs.messages) == 0:
@@ -156,7 +156,7 @@ if prompt := st.chat_input(on_submit=disable, disabled=st.session_state.disabled
     end = time.time()
 
     # time delay to simulate reading
-    time.sleep(max(len(prompt)/reading_cps - (end-start), 0))
+    time.sleep(max(len(prompt)/reading_cps - (end-start), 0)) # TODO: check time calculation logic
 
     # As usual, new messages are added to StreamlitChatMessageHistory when the Chain is called.
     with st.chat_message("ai", avatar=avatars["ai"]):
