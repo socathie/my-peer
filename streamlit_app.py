@@ -162,8 +162,8 @@ if prompt := st.chat_input(on_submit=disable, disabled=st.session_state.disabled
         st.write(typing_html, unsafe_allow_html=True)
         response = conversation.invoke(input=prompt, history=msgs.messages)
         
-        # if response doesn't end with ，。！？, add ？
-        if response["history"][-1].content[-1] not in "，。！？!?.":
+        # if response doesn't end with ，。！？!?. or any emoji, add ？
+        if response["history"][-1].content[-1] not in "，。！？!?.😊😀😁😂🤣😃😄😅😆😉😊😋😎😍😘😗😙😚☺️🙂🤗🤩🤔🤨😐😑😶🙄😏😣😥😮🤐😯😪😫😴😌😛😜😝🤤😒😓😔😕🙃🤑😲☹️🙁😖😞😟😤😢😭😦😧😨😩🤯😬😰😱😳🤪😵😡😠😷🤒🤕🤢🤮🤧😇🤠🤡🤥🤫🤭🧐🤓😈👿👹👺💀👻👽🤖💩😺😸😹😻😼😽🙀😿😾":
             response["history"][-1].content += "？"
         
         end = time.time()
